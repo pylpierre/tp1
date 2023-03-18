@@ -33,10 +33,10 @@ def find_seam_enermap(energy):
 
 
 def delete_seam_pixel_col(Image, seam, Energy):
-    hei, wei, _ = Image.shape
+    hei, wid, _ = Image.shape
     out_col = np.zeros((hei, wid - 1, 3))
     j = np.argmin(Energy[-1])
-    for i in range(h - 1, 0, -1):
+    for i in range(hei - 1, 0, -1):
            out_col[i, :, 0] = np.delete(Image[i, :, 0], [j]) # each line deleted the minimal point on b
            out_col[i, :, 1] = np.delete(Image[i, :, 1], [j]) # each line deleted the minimal point on g
            out_col[i, :, 2] = np.delete(Image[i, :, 2], [j]) # each line deleted the minimal point on r
@@ -48,7 +48,7 @@ def delete_seam_pixel_row(Image, seam, Energy):
     hei, wid, _ = Image.shape
     out_row = np.zeros((hei-1, wid, 3))
     i = np.argmin(Energy[-1])
-    for j in range(w-1, 0, -1):
+    for j in range(wid-1, 0, -1):
             out_row[:, j, 0] = np.delete(Image[:, j, 0], [i])    # each column deleted the minimal point on b
             out_row[:, j, 1] = np.delete(Image[:, j, 1], [i])  # each column deleted the minimal point on g
             out_row[:, j, 2] = np.delete(Image[:, j, 2], [i])  # each column deleted the minimal point on r
